@@ -1,4 +1,4 @@
-CFLAGS = /O2 /D NDEBUG /GS- /fp:fast /Fo"obj/" /W3 /wd4244 /wd4267 /D _CRT_SECURE_NO_WARNINGS /nologo
+CFLAGS = /O2 /D NDEBUG /GL /Gy /GS- /GR- /fp:fast /Fo"obj/" /W3 /wd4013 /wd4244 /wd4267 /wd4334 /wd4477 /D _CRT_SECURE_NO_WARNINGS /MP /nologo
 CPPFLAGS = /EHsc $(CFLAGS)
 
 ZOPFLILIB_SRC = src/zopfli/blocksplitter.c src/zopfli/cache.c\
@@ -31,13 +31,13 @@ all: zopfli zopflipng
 obj:
 	mkdir obj
 
-{src/zopfli}.c{obj}.obj:
+{src/zopfli}.c{obj}.obj::
 	$(CC) $(CFLAGS) /c $<
 
-{src/zopflipng}.cc{obj}.obj:
+{src/zopflipng}.cc{obj}.obj::
 	$(CPP) $(CPPFLAGS) /c /Fo"obj/" $<
 
-{src/zopflipng/lodepng/}.cpp{obj}.obj:
+{src/zopflipng/lodepng/}.cpp{obj}.obj::
 	$(CPP) $(CPPFLAGS) /c $<
 
 # Zopfli binary
